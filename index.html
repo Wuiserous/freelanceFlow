@@ -3,153 +3,101 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>FreelanceFlow | Project Management for Freelancers</title>
-  <meta name="description" content="FreelanceFlow is a polished dashboard for freelancers to manage projects, tasks, clients, time, invoices, and financial insights." />
+  <title>FreelanceFlow</title>
+  <meta name="description" content="Minimal freelance dashboard for projects, time, clients, invoices, and finance." />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Manrope:wght@500;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css" />
   <script defer src="script.js"></script>
 </head>
 <body>
-  <div class="bg-orb orb-1"></div>
-  <div class="bg-orb orb-2"></div>
-  <div class="bg-grid"></div>
-
   <div class="app-shell">
     <aside class="sidebar">
       <div class="brand">
         <div class="brand-mark">FF</div>
         <div>
           <div class="brand-name">FreelanceFlow</div>
-          <div class="brand-tag">Built for independent studios</div>
+          <div class="brand-tag">Simple freelance workspace</div>
         </div>
       </div>
 
       <nav class="nav">
         <a class="nav-item active" href="#dashboard">Dashboard</a>
         <a class="nav-item" href="#projects">Projects</a>
+        <a class="nav-item" href="#billing">Invoices</a>
         <a class="nav-item" href="#clients">Clients</a>
-        <a class="nav-item" href="#billing">Billing</a>
-        <a class="nav-item" href="#pricing">Plans</a>
       </nav>
 
-      <section class="sidebar-card plan-card">
-        <div class="eyebrow">Current Plan</div>
-        <h3>Pro Studio</h3>
-        <p>Up to 12 active projects, 30 clients, recurring invoices, and reminder automation.</p>
-        <div class="plan-meter">
-          <div class="plan-meter-fill" id="planMeter"></div>
-        </div>
+      <section class="sidebar-card">
+        <div class="eyebrow">Plan</div>
+        <h3>Pro</h3>
+        <p>Up to 10 active projects, recurring invoices, and reminders.</p>
+        <div class="plan-meter"><div class="plan-meter-fill" id="planMeter"></div></div>
         <div class="mini-row">
-          <span>9 / 12 projects</span>
-          <span>75%</span>
+          <span>2 of 10 projects</span>
+          <span>20%</span>
         </div>
-      </section>
-
-      <section class="sidebar-card api-card">
-        <div class="eyebrow">API Ready</div>
-        <p>Designed to connect with Node.js routes for projects, clients, invoicing, and reports.</p>
       </section>
     </aside>
 
     <main class="content" id="dashboard">
       <header class="topbar">
         <div>
-          <div class="eyebrow">Freelance OS</div>
-          <h1>Project management that feels calm, clear, and professional.</h1>
-          <p class="subtitle">
-            Keep projects moving, time tracked, invoices sent, and cash flow visible from one elegant dashboard.
-          </p>
+          <div class="eyebrow">Dashboard</div>
+          <h1>Clean project management for freelancers.</h1>
+          <p class="subtitle">One place for tasks, time, clients, invoices, and a simple finance view.</p>
         </div>
         <div class="topbar-actions">
           <button class="ghost-btn" data-open-modal="client">New Client</button>
           <button class="ghost-btn" data-open-modal="project">New Project</button>
-          <button class="primary-btn" data-open-modal="invoice">Create Invoice</button>
+          <button class="primary-btn" data-open-modal="invoice">New Invoice</button>
         </div>
       </header>
 
       <section class="stats-grid" aria-label="Summary statistics">
         <article class="stat-card">
-          <span class="stat-label">Income this month</span>
+          <span class="stat-label">Paid this month</span>
           <strong id="incomeStat">$0</strong>
-          <span class="stat-note positive">+12.4% from last month</span>
         </article>
         <article class="stat-card">
-          <span class="stat-label">Outstanding invoices</span>
+          <span class="stat-label">Outstanding</span>
           <strong id="invoiceStat">$0</strong>
-          <span class="stat-note warning">3 invoices awaiting payment</span>
         </article>
         <article class="stat-card">
           <span class="stat-label">Tracked hours</span>
           <strong id="hoursStat">0h</strong>
-          <span class="stat-note">This week across all projects</span>
-        </article>
-        <article class="stat-card">
-          <span class="stat-label">Active clients</span>
-          <strong id="clientStat">0</strong>
-          <span class="stat-note">Healthy pipeline with repeat work</span>
         </article>
       </section>
 
       <section class="dashboard-grid">
-        <div class="main-column">
-          <section class="panel" id="projects">
-            <div class="panel-head">
-              <div>
-                <div class="eyebrow">Projects</div>
-                <h2>Workstream overview</h2>
-              </div>
-              <div class="panel-actions">
-                <div class="search-wrap">
-                  <input id="searchInput" type="search" placeholder="Search projects, clients, invoices" />
-                </div>
-                <button class="ghost-btn small" data-open-modal="task">Add Task</button>
-              </div>
+        <section class="panel" id="projects">
+          <div class="panel-head">
+            <div>
+              <div class="eyebrow">Projects</div>
+              <h2>Current work</h2>
             </div>
-            <div class="project-list" id="projectList"></div>
-          </section>
-
-          <section class="panel" id="billing">
-            <div class="panel-head">
-              <div>
-                <div class="eyebrow">Billing</div>
-                <h2>Invoice activity</h2>
+            <div class="panel-actions">
+              <div class="search-wrap">
+                <input id="searchInput" type="search" placeholder="Search" />
               </div>
-              <div class="toggle-pills" id="invoiceFilter">
-                <button class="pill active" data-filter="all">All</button>
-                <button class="pill" data-filter="paid">Paid</button>
-                <button class="pill" data-filter="pending">Pending</button>
-              </div>
+              <button class="ghost-btn small" data-open-modal="task">Add Task</button>
             </div>
-            <div class="table-wrap">
-              <table class="data-table">
-                <thead>
-                  <tr>
-                    <th>Invoice</th>
-                    <th>Client</th>
-                    <th>Due</th>
-                    <th>Amount</th>
-                    <th>Status</th>
-                  </tr>
-                </thead>
-                <tbody id="invoiceTable"></tbody>
-              </table>
-            </div>
-          </section>
-        </div>
+          </div>
+          <div class="project-list" id="projectList"></div>
+        </section>
 
         <div class="side-column">
           <section class="panel tracker-panel">
             <div class="panel-head">
               <div>
-                <div class="eyebrow">Time Tracking</div>
-                <h2>Live timer</h2>
+                <div class="eyebrow">Time</div>
+                <h2>Timer</h2>
               </div>
               <span class="live-badge" id="timerState">Idle</span>
             </div>
             <div class="timer-display" id="timerDisplay">00:00:00</div>
-            <p class="muted" id="timerCaption">Select a project and task, then start tracking.</p>
+            <p class="muted" id="timerCaption">Select a project and task to start.</p>
 
             <div class="field-grid">
               <label>
@@ -163,86 +111,60 @@
             </div>
 
             <div class="timer-actions">
-              <button class="primary-btn" id="timerStart">Start Timer</button>
-              <button class="ghost-btn" id="timerStop">Stop & Log</button>
+              <button class="primary-btn" id="timerStart">Start</button>
+              <button class="ghost-btn" id="timerStop">Stop</button>
             </div>
           </section>
 
           <section class="panel chart-panel">
             <div class="panel-head">
               <div>
-                <div class="eyebrow">Financial Dashboard</div>
-                <h2>Revenue trend</h2>
+                <div class="eyebrow">Finance</div>
+                <h2>Revenue</h2>
               </div>
             </div>
-            <canvas id="revenueChart" width="520" height="280" aria-label="Revenue trend chart"></canvas>
-            <div class="chart-legend" id="revenueLegend"></div>
-          </section>
-
-          <section class="panel chart-panel">
-            <div class="panel-head">
-              <div>
-                <div class="eyebrow">Expense Mix</div>
-                <h2>Where money goes</h2>
-              </div>
-            </div>
-            <canvas id="expenseChart" width="520" height="220" aria-label="Expense distribution chart"></canvas>
-            <div class="chart-note">Tools, taxes, and subscriptions are tracked for a realistic freelance cash-flow view.</div>
+            <canvas id="revenueChart" width="480" height="240" aria-label="Revenue chart"></canvas>
+            <p class="chart-note">Simple monthly trend for presentation purposes.</p>
           </section>
         </div>
       </section>
 
       <section class="bottom-grid">
+        <section class="panel" id="billing">
+          <div class="panel-head">
+            <div>
+              <div class="eyebrow">Invoices</div>
+              <h2>Billing</h2>
+            </div>
+            <div class="toggle-pills" id="invoiceFilter">
+              <button class="pill active" data-filter="all">All</button>
+              <button class="pill" data-filter="paid">Paid</button>
+              <button class="pill" data-filter="pending">Pending</button>
+            </div>
+          </div>
+          <div class="table-wrap">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>Invoice</th>
+                  <th>Client</th>
+                  <th>Amount</th>
+                  <th>Status</th>
+                </tr>
+              </thead>
+              <tbody id="invoiceTable"></tbody>
+            </table>
+          </div>
+        </section>
+
         <section class="panel" id="clients">
           <div class="panel-head">
             <div>
-              <div class="eyebrow">Client CRM</div>
-              <h2>Relationships and communication history</h2>
+              <div class="eyebrow">Clients</div>
+              <h2>Client list</h2>
             </div>
           </div>
           <div class="client-grid" id="clientGrid"></div>
-        </section>
-
-        <section class="panel" id="pricing">
-          <div class="panel-head">
-            <div>
-              <div class="eyebrow">Monetization</div>
-              <h2>Subscription tiers</h2>
-            </div>
-          </div>
-          <div class="pricing-grid">
-            <article class="pricing-card">
-              <h3>Starter</h3>
-              <p>For solo freelancers getting organized.</p>
-              <strong>$12<span>/mo</span></strong>
-              <ul>
-                <li>Up to 3 active projects</li>
-                <li>5 clients</li>
-                <li>Basic invoices</li>
-              </ul>
-            </article>
-            <article class="pricing-card featured">
-              <div class="featured-tag">Most Popular</div>
-              <h3>Pro Studio</h3>
-              <p>For growing freelancers with recurring work.</p>
-              <strong>$24<span>/mo</span></strong>
-              <ul>
-                <li>Up to 12 projects</li>
-                <li>30 clients</li>
-                <li>Recurring invoices and reminders</li>
-              </ul>
-            </article>
-            <article class="pricing-card">
-              <h3>Studio+</h3>
-              <p>For high-volume independent teams.</p>
-              <strong>$49<span>/mo</span></strong>
-              <ul>
-                <li>Unlimited projects</li>
-                <li>Unlimited clients</li>
-                <li>Advanced reporting and integrations</li>
-              </ul>
-            </article>
-          </div>
         </section>
       </section>
     </main>
@@ -255,7 +177,7 @@
           <div class="eyebrow" id="modalEyebrow">Create</div>
           <h2 id="modalTitle">New item</h2>
         </div>
-        <button class="icon-btn" id="closeModal" aria-label="Close dialog">×</button>
+        <button class="icon-btn" id="closeModal" aria-label="Close dialog">x</button>
       </div>
       <form id="modalForm" class="modal-form"></form>
     </div>
